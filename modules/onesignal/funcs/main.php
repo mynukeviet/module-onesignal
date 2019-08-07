@@ -8,6 +8,13 @@
  */
 if (!defined('NV_IS_MOD_ONESIGNAL')) die('Stop!!!');
 
+if (empty($array_config['auth_key'])) {
+    $contents = nv_theme_alert($lang_module['error_required_auth_key_title'], $lang_module['error_required_auth_key_content'], 'danger');
+    include NV_ROOTDIR . '/includes/header.php';
+    echo nv_site_theme($contents);
+    include NV_ROOTDIR . '/includes/footer.php';
+}
+
 if ($nv_Request->isset_request('change_app_id', 'post')) {
     $new_app_id = $nv_Request->get_string('new_app_id', 'post', '');
     if (!empty($new_app_id)) {
@@ -25,7 +32,7 @@ $page_title = $module_info['custom_title'];
 $key_words = $module_info['keywords'];
 $base_url = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name;
 $page = $nv_Request->get_int('page', 'get', 1);
-$app_id = $nv_Request->get_string($module_data . '_app_id', 'cookie', '');
+$app_id = $nv_Request->get_string($module_data . '_app_id', 'cookie', reset($array_list_apps)['id']);
 
 $array_data = nv_onesignaListNotifications($app_id, $page);
 

@@ -10,11 +10,28 @@ if (!defined('NV_SYSTEM')) die('Stop!!!');
 
 define('NV_IS_MOD_ONESIGNAL', true);
 
-$array_config = array(
-    'auth_key' => 'ZjE0ZjI0MjktN2U4MC00Njc3LWE2MzctYmYwZGJkZGU3NmYw'
-);
+$notification_id = '';
+$array_config = $module_config[$module_name];
 
 $array_list_apps = nv_onesignalListApps();
+
+$array_segments = array(
+    'Subscribed Users' => $lang_module['subscribed_users'],
+    'Engaged Users' => $lang_module['engaged_users'],
+    'Active Users' => $lang_module['active_users'],
+    'Inactive Users' => $lang_module['inactive_users']
+);
+
+if ($op == 'main') {
+    if (sizeof($array_op) == 1) {
+        if (preg_match('/^page\-([0-9]+)$/', $array_op[0], $m)) {
+            $page = (int) $m[1];
+        } elseif (preg_match('/^([a-z0-9\-]+)$/i', $array_op[0], $m)) {
+            $op = 'detail';
+            $notification_id = $m[1];
+        }
+    }
+}
 
 function nv_onesignalListApps()
 {
@@ -57,16 +74,22 @@ function nv_onesignaSendMessage($row)
 {
     global $array_list_apps;
 
+    $heading = array(
+        "en" => $row['title']
+    );
+
     $content = array(
         "en" => $row['content']
     );
 
     $fields = array(
         'app_id' => $row['app_id'],
-        'include_player_ids' => array(
-            '254aad4b-ac64-4333-9413-8473139d7aac'
+        'included_segments' => array(
+            $row['segments']
         ),
-        'contents' => $content
+        'headings' => $heading,
+        'contents' => $content,
+        'url' => $row['url']
     );
 
     $fields = json_encode($fields);
@@ -114,11 +137,13 @@ function nv_onesignaListNotifications($app_id, $page, $limit = 10)
 
 function nv_onesignaViewNotifications($app_id, $notification_id)
 {
+    global $array_list_apps;
+
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications/" . $notification_id . "?app_id=" . $app_id);
     curl_setopt($ch, CURLOPT_HTTPHEADER, array(
         'Content-Type: application/json',
-        'Authorization: Basic NTdmZWUyMTktMjVhNy00OWYzLThhM2EtODIxY2ExZTI2MmJj'
+        'Authorization: Basic ' . $array_list_apps[$app_id]['basic_auth_key']
     ));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_HEADER, FALSE);

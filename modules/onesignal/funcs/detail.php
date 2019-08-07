@@ -8,13 +8,19 @@
  */
 if (!defined('NV_IS_MOD_ONESIGNAL')) die('Stop!!!');
 
+if (empty($array_config['auth_key'])) {
+    $contents = nv_theme_alert($lang_module['error_required_auth_key_title'], $lang_module['error_required_auth_key_content'], 'danger');
+    include NV_ROOTDIR . '/includes/header.php';
+    echo nv_site_theme($contents);
+    include NV_ROOTDIR . '/includes/footer.php';
+}
+
 $page_title = $module_info['custom_title'];
 $key_words = $module_info['keywords'];
 
 $array_data = array();
 
 $app_id = 'b13e3623-03ed-48c1-b73b-86771057c3f8';
-$notification_id = '32ace99a-80b3-497d-866d-163eb97e42dd';
 var_dump(nv_onesignaViewNotifications($app_id, $notification_id));
 die();
 

@@ -8,24 +8,44 @@
  */
 if (!defined('NV_IS_MOD_ONESIGNAL')) die('Stop!!!');
 
+if (empty($array_config['auth_key'])) {
+    $contents = nv_theme_alert($lang_module['error_required_auth_key_title'], $lang_module['error_required_auth_key_content'], 'danger');
+    include NV_ROOTDIR . '/includes/header.php';
+    echo nv_site_theme($contents);
+    include NV_ROOTDIR . '/includes/footer.php';
+}
+
 if ($nv_Request->isset_request('submit', 'post')) {
     $row['app_id'] = $nv_Request->get_title('app_id', 'post', '');
+    $row['title'] = $nv_Request->get_textarea('title', 'post');
     $row['content'] = $nv_Request->get_textarea('content', 'post');
+    $row['url'] = $nv_Request->get_string('url', 'post');
+    $row['segments'] = $nv_Request->get_title('segments', 'post');
 
     if (empty($row['app_id'])) {
         nv_jsonOutput(array(
             'error' => 1,
             'msg' => $lang_module['error_required_appid']
         ));
+    } elseif (empty($row['title'])) {
+        nv_jsonOutput(array(
+            'error' => 1,
+            'msg' => $lang_module['error_required_title']
+        ));
     } elseif (empty($row['content'])) {
         nv_jsonOutput(array(
             'error' => 1,
             'msg' => $lang_module['error_required_content']
         ));
+    } elseif (empty($row['segments'])) {
+        nv_jsonOutput(array(
+            'error' => 1,
+            'msg' => $lang_module['error_required_segments']
+        ));
     }
 
     if (nv_onesignaSendMessage($row)) {
-        $_SESSION[$module_data]['app_id'] = $row['app_id'];
+        $nv_Request->set_Cookie($module_data . '_app_id', $row['app_id']);
         nv_jsonOutput(array(
             'error' => 0,
             'redirect' => nv_url_rewrite(NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name, true)

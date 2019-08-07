@@ -17,4 +17,5 @@ $lang_translator['langtype'] = 'lang_module';
 
 $lang_module['main'] = 'Trang chính';
 $lang_module['config'] = 'Cấu hình';
-$lang_module['save'] = 'Save';
+$lang_module['save'] = 'Lưu thay đổi';
+$lang_module['config_auth_key'] = 'User Auth Key';

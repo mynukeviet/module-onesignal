@@ -32,8 +32,9 @@ function nv_theme_onesignal_main($app_id, $array_data, $page)
 
     if (!empty($array_data['notifications'])) {
         foreach ($array_data['notifications'] as $notifications) {
+            $notifications['title'] = $notifications['headings']['en'];
             $notifications['completed_at'] = nv_date('H:i d/m/Y', $notifications['completed_at']);
-            $notifications['link_view'] = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=detail/' . $notifications['id'];
+            $notifications['link_view'] = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $notifications['id'];
             $xtpl->assign('NOTIFICATIONS', $notifications);
             $xtpl->parse('main.notifications');
         }
@@ -73,7 +74,7 @@ function nv_theme_onesignal_detail($array_data)
  */
 function nv_theme_onesignal_content($app_id)
 {
-    global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $array_list_apps;
+    global $global_config, $module_name, $module_file, $lang_module, $module_config, $module_info, $op, $array_list_apps, $array_segments;
 
     $xtpl = new XTemplate($op . '.tpl', NV_ROOTDIR . '/themes/' . $module_info['template'] . '/modules/' . $module_file);
     $xtpl->assign('LANG', $lang_module);
@@ -84,6 +85,17 @@ function nv_theme_onesignal_content($app_id)
             $xtpl->assign('APPS', $apps);
             $xtpl->parse('main.apps');
         }
+    }
+
+    $i = 0;
+    foreach ($array_segments as $index => $title) {
+        $xtpl->assign('SEGMENTS', array(
+            'index' => $index,
+            'title' => $title,
+            'checked' => $i == 0 ? 'checked="checked"' : ''
+        ));
+        $xtpl->parse('main.segments');
+        $i++;
     }
 
     $xtpl->parse('main');
