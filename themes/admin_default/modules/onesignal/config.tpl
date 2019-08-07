@@ -3,9 +3,9 @@
 	<div class='panel panel-default'>
 		<div class='panel-body'>
 			<div class='form-group'>
-				<label class='col-sm-4 control-label'>{LANG.config_per_page}</label>
+				<label class='col-sm-4 control-label'>{LANG.config_auth_key}</label>
 				<div class='col-sm-20'>
-					<input type='number' name='per_page' value='{DATA.per_page}' class='form-control' />
+					<input type='text' name='auth_key' value='{DATA.auth_key}' class='form-control' />
 				</div>
 			</div>
 		</div>

@@ -9,19 +9,19 @@
 <table class="table table-striped table-bordered table-hover">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>{LANG.successful}</th>
-            <th>{LANG.clicked}</th>
-            <th>{LANG.completed_at}</th>
+            <th>{LANG.title}</th>
+            <th width="100" class="text-center">{LANG.successful}</th>
+            <th width="100" class="text-center">{LANG.clicked}</th>
+            <th width="140" class="text-center">{LANG.completed_at}</th>
         </tr>
     </thead>
     <tbody>
         <!-- BEGIN: notifications -->
         <tr>
-            <th><a href="{NOTIFICATIONS.link_view}">{NOTIFICATIONS.id}</a></th>
-            <th>{NOTIFICATIONS.successful}</th>
-            <th>{NOTIFICATIONS.converted}</th>
-            <th>{NOTIFICATIONS.completed_at}</th>
+            <td><strong>{NOTIFICATIONS.title}</strong></td>
+            <td class="text-center">{NOTIFICATIONS.successful}</td>
+            <td class="text-center">{NOTIFICATIONS.converted}</td>
+            <td class="text-center">{NOTIFICATIONS.completed_at}</td>
         </tr>
         <!-- END: notifications -->
     </tbody>
