@@ -33,6 +33,12 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.image}</strong></label>
+                <div class="col-sm-19 col-md-20">
+                    <input type="url" class="form-control" name="image" />
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.url}</strong></label>
                 <div class="col-sm-19 col-md-20">
                     <input type="url" class="form-control" name="url" />

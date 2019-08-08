@@ -20,6 +20,7 @@ $lang_module['detail'] = 'Xem chi tiết';
 $lang_module['app_id'] = 'Ứng dụng';
 $lang_module['title'] = 'Tiêu đề';
 $lang_module['content'] = 'Nội dung';
+$lang_module['image'] = 'Hình ảnh';
 $lang_module['url'] = 'Liên kết';
 $lang_module['send'] = 'Gửi';
 $lang_module['send_notification'] = 'Gửi thông báo';

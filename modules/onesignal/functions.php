@@ -92,6 +92,10 @@ function nv_onesignaSendMessage($row)
         'url' => $row['url']
     );
 
+    if (!empty($row['image']) && nv_is_url($row['image'])) {
+        $fields['chrome_web_image'] = $row['image'];
+    }
+
     $fields = json_encode($fields);
 
     $curl = curl_init();
