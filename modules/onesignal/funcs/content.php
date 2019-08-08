@@ -28,11 +28,6 @@ if ($nv_Request->isset_request('submit', 'post')) {
             'error' => 1,
             'msg' => $lang_module['error_required_appid']
         ));
-    } elseif (empty($row['title'])) {
-        nv_jsonOutput(array(
-            'error' => 1,
-            'msg' => $lang_module['error_required_title']
-        ));
     } elseif (empty($row['content'])) {
         nv_jsonOutput(array(
             'error' => 1,

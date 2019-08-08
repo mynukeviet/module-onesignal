@@ -21,15 +21,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.title}</strong></label>
+                <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.content}</strong></label>
                 <div class="col-sm-19 col-md-20">
-                    <input type="text" class="form-control" name="title" />
+                    <textarea class="form-control required" name="content" rows="6"></textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.content}</strong></label>
+                <label class="col-sm-5 col-md-4 control-label"><strong>{LANG.title}</strong></label>
                 <div class="col-sm-19 col-md-20">
-                    <textarea class="form-control" name="content" rows="6"></textarea>
+                    <input type="text" class="form-control" name="title" />
                 </div>
             </div>
             <div class="form-group">
@@ -47,7 +47,8 @@
         </div>
     </div>
     <div class="text-center">
-        <input type="hidden" name="submit" value="1" /> <input class="btn btn-primary" type="submit" value="{LANG.send}" />
+        <input type="hidden" name="submit" value="1" /> <input class="btn btn-primary" type="submit" value="{LANG.send}" id="btn-send" />
     </div>
 </form>
+<div id="ajax_loader" class="ajax-load-qa"> </div>
 <!-- END: main -->

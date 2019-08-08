@@ -74,10 +74,6 @@ function nv_onesignaSendMessage($row)
 {
     global $array_list_apps;
 
-    $heading = array(
-        "en" => $row['title']
-    );
-
     $content = array(
         "en" => $row['content']
     );
@@ -85,15 +81,23 @@ function nv_onesignaSendMessage($row)
     $fields = array(
         'app_id' => $row['app_id'],
         'included_segments' => array(
-            $row['segments']
+            //$row['segments']
         ),
-        'headings' => $heading,
-        'contents' => $content,
-        'url' => $row['url']
+        'contents' => $content
     );
+
+    if (!empty($row['title'])) {
+        $fields['headings'] = array(
+            "en" => $row['title']
+        );
+    }
 
     if (!empty($row['image']) && nv_is_url($row['image'])) {
         $fields['chrome_web_image'] = $row['image'];
+    }
+
+    if (!empty($row['url']) && nv_is_url($row['url'])) {
+        $fields['url'] = $row['url'];
     }
 
     $fields = json_encode($fields);
