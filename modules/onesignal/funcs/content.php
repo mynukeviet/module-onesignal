@@ -19,6 +19,7 @@ if ($nv_Request->isset_request('submit', 'post')) {
     $row['app_id'] = $nv_Request->get_title('app_id', 'post', '');
     $row['title'] = $nv_Request->get_textarea('title', 'post');
     $row['content'] = $nv_Request->get_textarea('content', 'post');
+    $row['image'] = $nv_Request->get_string('image', 'post');
     $row['url'] = $nv_Request->get_string('url', 'post');
     $row['segments'] = $nv_Request->get_title('segments', 'post');
 
