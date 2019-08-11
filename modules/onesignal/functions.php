@@ -81,7 +81,7 @@ function nv_onesignaSendMessage($row)
     $fields = array(
         'app_id' => $row['app_id'],
         'included_segments' => array(
-            //$row['segments']
+            $row['segments']
         ),
         'contents' => $content
     );
