@@ -33,6 +33,7 @@ function nv_theme_onesignal_main($app_id, $array_data, $page)
     if (!empty($array_data['notifications'])) {
         foreach ($array_data['notifications'] as $notifications) {
             $notifications['title'] = $notifications['headings']['en'];
+            $notifications['content'] = $notifications['contents']['en'];
             $notifications['completed_at'] = nv_date('H:i d/m/Y', $notifications['completed_at']);
             $notifications['link_view'] = NV_BASE_SITEURL . 'index.php?' . NV_LANG_VARIABLE . '=' . NV_LANG_DATA . '&' . NV_NAME_VARIABLE . '=' . $module_name . '&amp;' . NV_OP_VARIABLE . '=' . $notifications['id'];
             $xtpl->assign('NOTIFICATIONS', $notifications);

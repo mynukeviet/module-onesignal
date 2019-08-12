@@ -18,7 +18,7 @@
     <tbody>
         <!-- BEGIN: notifications -->
         <tr>
-            <td><strong>{NOTIFICATIONS.title}</strong></td>
+            <td><strong>{NOTIFICATIONS.content}</strong></td>
             <td class="text-center">{NOTIFICATIONS.successful}</td>
             <td class="text-center">{NOTIFICATIONS.converted}</td>
             <td class="text-center">{NOTIFICATIONS.completed_at}</td>
